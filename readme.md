@@ -21,13 +21,13 @@ Veritabanı yapılandırılması **DapperIdentity** **DapperIdentityCryptography
 ```
 
 **Admin Girişi:**  
-UserName: "admin"
+UserName: "admin" <br>
 Password: "123"
 
 **Yazar Girişi:**  
-UserName: "yazar"
+UserName: "yazar" <br>
 Password: "123"
 
 **Üye Girişi:**  
-UserName: "üye"
+UserName: "üye" <br>
 Password: "123"
