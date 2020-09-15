@@ -1,45 +1,33 @@
-usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]
-           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
-           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]
-           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
-           <command> [<args>]
+**Projede Identity.Dapper ve NLog kütüphaneleri kullanarak log tabanlı kullanıcı yönetimi sistemi oluşturdum.**
 
-These are common Git commands used in various situations:
+# Identity.Dapper
 
-start a working area (see also: git help tutorial)
-   clone             Clone a repository into a new directory
-   init              Create an empty Git repository or reinitialize an existing one
+[![Build Status](https://travis-ci.org/grandchamp/Identity.Dapper.svg?branch=master)](https://travis-ci.org/grandchamp/Identity.Dapper)
+[![NuGet](https://img.shields.io/nuget/v/Identity.Dapper.svg?style=flat)](https://www.nuget.org/packages/Identity.Dapper/)
 
-work on the current change (see also: git help everyday)
-   add               Add file contents to the index
-   mv                Move or rename a file, a directory, or a symlink
-   restore           Restore working tree files
-   rm                Remove files from the working tree and from the index
-   sparse-checkout   Initialize and modify the sparse-checkout
+Nuget package (Eg: Identity.Dapper.SqlServer).
 
-examine the history and state (see also: git help revisions)
-   bisect            Use binary search to find the commit that introduced a bug
-   diff              Show changes between commits, commit and working tree, etc
-   grep              Print lines matching a pattern
-   log               Show commit logs
-   show              Show various types of objects
-   status            Show the working tree status
+Veritabanı yapılandırılması **DapperIdentity** **DapperIdentityCryptography** 
+```JSON
+"DapperIdentity": {
+    "ConnectionString": "Connection string of your database",
+    "Username": "user",
+    "Password": "123"
+},
+"DapperIdentityCryptography": {
+    "Key": "Base64 32 bytes key",
+    "IV": "Base64 16 bytes key"
+}
+```
 
-grow, mark and tweak your common history
-   branch            List, create, or delete branches
-   commit            Record changes to the repository
-   merge             Join two or more development histories together
-   rebase            Reapply commits on top of another base tip
-   reset             Reset current HEAD to the specified state
-   switch            Switch branches
-   tag               Create, list, delete or verify a tag object signed with GPG
+**Admin Girişi:**  
+UserName: "admin"
+Password: "123"
 
-collaborate (see also: git help workflows)
-   fetch             Download objects and refs from another repository
-   pull              Fetch from and integrate with another repository or a local branch
-   push              Update remote refs along with associated objects
+**Yazar Girişi:**  
+UserName: "yazar"
+Password: "123"
 
-'git help -a' and 'git help -g' list available subcommands and some
-concept guides. See 'git help <command>' or 'git help <concept>'
-to read about a specific subcommand or concept.
-See 'git help git' for an overview of the system.
+**Üye Girişi:**  
+UserName: "üye"
+Password: "123"
