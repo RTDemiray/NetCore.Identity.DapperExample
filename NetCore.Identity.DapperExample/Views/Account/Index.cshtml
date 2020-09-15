@@ -1,0 +1,81 @@
+﻿@model LoginViewModel
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Giriş Yap</title>
+    <link href="~/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link href="~/css/Account.css" rel="stylesheet" />
+</head>
+<!--Coded with love by Mutiullah Samim-->
+<body>
+    <div class="container h-100">
+        <div class="d-flex justify-content-center h-100">
+            <div class="user_card">
+                <div class="d-flex justify-content-center">
+                    <div class="brand_logo_container">
+                        <img src="https://cdn.freebiesupply.com/logos/large/2x/pinterest-circle-logo-png-transparent.png" class="brand_logo" alt="Logo">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center form_container">
+                    <form asp-antiforgery="true" data-ajax="true" data-ajax-success="success">
+                        <div class="input-group mb-1">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="text" asp-for="UserName" class="form-control input_user" value="" placeholder="Kullanıcı Adı">
+                        </div>
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                        <div class="input-group mb-1">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" asp-for="Password" class="form-control input_pass" value="" placeholder="Şifre">
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" asp-for="RememberMe" class="custom-control-input" id="customControlInline">
+                                <label asp-for="RememberMe" class="custom-control-label" for="customControlInline">Beni Hatırla</label>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center mt-3 login_container">
+                            <button type="submit" name="button" class="btn login_btn">Giriş Yap</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="mt-4">
+                    <div class="d-flex justify-content-center links">
+                        <a href="#">Şifre mi unuttum?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="~/jquery/jquery.min.js"></script>
+<script src="~/jquery-validate/jquery.validate.min.js"></script>
+<script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/sweetalert/sweetalert.min.js"></script>
+
+<script>
+    function success(response) {
+        if (response.isSuccess) {
+            swal({
+                title: response.message,
+                icon: 'success'
+            });
+            location.href = "/";
+        } else {
+            swal({
+                title: response.message,
+                icon: 'error'
+            });
+        }
+    }
+</script>

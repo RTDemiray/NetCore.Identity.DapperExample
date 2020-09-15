@@ -1,0 +1,85 @@
+﻿@model UsersViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <title>Kullanıcı Düzenle</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Kullanıcı Ekle</h2>
+        <form data-ajax="true" data-ajax-success="success" asp-antiforgery="true">
+            <div class="form-group">
+                <label asp-for="UserName">Kullanıcı Adı</label>
+                <input type="text" class="form-control" asp-for="UserName" aria-describedby="emailHelp" placeholder="Kullanıcı Adı">
+                <span class="text-danger" asp-validation-for="UserName"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email">Email</label>
+                <input type="email" class="form-control" asp-for="Email" aria-describedby="emailHelp" placeholder="Email">
+                <span class="text-danger" asp-validation-for="Email"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password">Şifre</label>
+                <input type="password" asp-for="Password" class="form-control" placeholder="Şifre">
+                <span class="text-danger" asp-validation-for="Password"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PasswordConfirm">Şifre Tekrar</label>
+                <input type="password" asp-for="PasswordConfirm" class="form-control" placeholder="Şifre Tekrar">
+                <span class="text-danger" asp-validation-for="PasswordConfirm"></span>
+            </div>
+            <div>Rol</div>
+            @foreach (var item in Model.UserRole)
+            {
+                <div class="form-group form-check d-inline-block mr-2">
+                    <input type="checkbox" name="RoleName" class="form-check-input" checked="checked" value="@item.Name">
+                    <label class="form-check-label">@item.Name</label>
+                </div>
+            }
+            @for (int i = 0; i < Model.IdentityRoles.Count(); i++)
+            {
+                <div class="form-group form-check d-inline-block mr-2">
+                    <input type="checkbox" name="RoleName" class="form-check-input" value="@Model.IdentityRoles[i].Name">
+                    <label class="form-check-label">@Model.IdentityRoles[i].Name</label>
+                </div>
+            }
+            <div class="form-group form-check">
+                <input type="checkbox" asp-for="IsActive" class="form-check-input">
+                <label class="form-check-label" asp-for="IsActive">Aktif mi?</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Düzenle</button>
+            <a href="/" class="btn btn-info">Geri Gel</a>
+        </form>
+    </div>
+</body>
+</html>
+
+<script src="~/jquery/jquery.min.js"></script>
+<script src="~/jquery-validate/jquery.validate.min.js"></script>
+<script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/sweetalert/sweetalert.min.js"></script>
+
+<script>
+    function success(response) {
+        if (response.isSuccess) {
+            swal({
+                title: response.message,
+                icon: 'success'
+            });
+        } else {
+            swal({
+                title: response.message,
+                icon: 'error'
+            });
+        }
+    }
+</script>

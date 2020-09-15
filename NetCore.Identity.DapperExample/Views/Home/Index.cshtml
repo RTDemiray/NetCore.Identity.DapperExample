@@ -1,0 +1,81 @@
+﻿@model List<UsersWithRoles>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Anasayfa</title>
+    <link href="~/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <h1>Merhaba @User.Identity.Name </h1>
+    <ul>
+        <li class="mb-2"><a href="/Kullanici/Ekle">Kullanıcı Oluştur</a></li>
+        <li class="mb-2"><a href="/Rol/Ekle">Rol Oluştur</a></li>
+        <li class="mb-2"><a href="/yazar">Yazar Sayfasına Git</a></li>
+        <li class="mb-2"><a href="/uye">Uye Sayfasına Git</a></li>
+        <li class="mb-2"><a href="/Cikis-Yap">Çıkış Yap</a></li>
+    </ul>
+    <div class="container">
+        <div class="row">
+            <h2 class="text-center">Kullanıcılar</h2>
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Kullanıcı Adı</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Rol</th>
+                        <th scope="col">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        <tr>
+                            <td>@user.UserName</td>
+                            <td>@user.Email</td>
+                            <td>
+                                @foreach (var role in user.UserRoles)
+                                {
+                                    <span>|</span> @role.Name
+                                }
+                            </td>
+                            <td>
+                                <a href="/kullanici/duzenle/@user.Id" class="btn btn-outline-dark">Düzenle</a>
+                                <a href="/kullanici/sil/@user.Id" class="btn btn-outline-danger">Sil</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <h2 class="text-center">Roller</h2>
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Rol</th>
+                        <th scope="col">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var role in ViewBag.Roles)
+                    {
+                        <tr>
+                            <td>@role.Name</td>
+                            <td>
+                                <a href="/rol/duzenle/@role.Id" class="btn btn-outline-dark">Düzenle</a>
+                                <a href="/rol/sil/@role.Id" class="btn btn-outline-danger">Sil</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

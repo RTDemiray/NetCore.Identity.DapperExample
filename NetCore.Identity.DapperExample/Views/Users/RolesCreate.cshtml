@@ -1,0 +1,55 @@
+﻿@model RolesViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <title>Rol Ekle</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Rol Ekle</h2>
+        <form data-ajax="true" data-ajax-success="success" asp-antiforgery="true">
+            <div class="form-group">
+                <label asp-for="Name">Rol Adı</label>
+                <input type="text" class="form-control" asp-for="Name" aria-describedby="emailHelp" placeholder="Rol Adı">
+                <span class="text-danger" asp-validation-for="Name"></span>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" asp-for="IsActive" class="form-check-input">
+                <label class="form-check-label" asp-for="IsActive">Aktif mi?</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+            <a href="/" class="btn btn-info">Geri Gel</a>
+        </form>
+    </div>
+</body>
+</html>
+
+<script src="~/jquery/jquery.min.js"></script>
+<script src="~/jquery-validate/jquery.validate.min.js"></script>
+<script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/sweetalert/sweetalert.min.js"></script>
+
+<script>
+    function success(response) {
+        if (response.isSuccess) {
+            swal({
+                title: response.message,
+                icon: 'success'
+            });
+        } else {
+            swal({
+                title: response.message,
+                icon: 'error'
+            });
+        }
+    }
+</script>
